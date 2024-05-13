@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styles.css" th:href="@{/css/style.css}">
+    
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="#" th:href="@{/}">Your Logo</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search products...">
+            <button type="submit">Search</button>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#" th:href="@{/products}">Products</a></li>
+                <li><a href="#" th:href="@{/search}">Search</a></li>
+                <li><a href="#" th:href="@{/categories}">Category Listing</a></li>
+                <li><a href="#" th:href="@{/profile}">User Profile</a></li>
+                <li><a href="#" th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

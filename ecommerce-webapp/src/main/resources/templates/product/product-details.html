@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="/css/styles.css" th:href="@{/css/style.css}">
+    <style>
+        /* Your specific styles for product details */
+        
+    </style>
+</head>
+<body>
+    <div class="product-details-container">
+       
+        <h1 class="product-title" th:text="${product.productName}"></h1>
+        <p class="product-description" th:text="${product.productDetails}"></p>
+        <p class="product-description" th:text="${product.productFeatures}"></p>
+        <p class="product-price" th:text="'Price: $' + ${product.productUnitPrice}"></p>
+    </div>
+</body>
+</html>
