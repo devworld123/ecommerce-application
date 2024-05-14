@@ -1,16 +1,10 @@
 package com.anju.ecommerceusermicroserviceapplication.model;
 
-import java.util.Set;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,59 +13,60 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@Column(name = "user_id")
+	private long userId;
 
-	@Column(name = "email")
-	private String email;
+	
 
-	@Column(name = "firstname")
-	private String firstname;
+	@Column(name = "user_first_name")
+	private String firstName;
 
-	@Column(name = "lastname")
-	private String lastname;
+	@Column(name = "user_last_name")
+	private String lastName;
 
-	@Column(name = "password")
+	@Column(name = "user_password")
 	private String password;
+	
+	@Column(name = "user_email_id")
+	private String emailId;
 
-	@Column(name = "active")
-	private int active;
+	@Column(name = "user_role_id")
+	private int userRoleId;
+	
+	@Column(name = "user_address")
+	private String userAddress;
+	
+	@Column(name = "user_contact_no")
+	private String contactNumber;
+	
+	@Column(name = "user_creation_date")
+	private String userCreationDate;
+	
+	@Column(name = "user_status")
+	private int userStatus;
 
-	// Using ManyToOne mapping for the user as each user may have many roles.
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles;
-
-	public int getId() {
-		return id;
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getFirstname() {
-		return firstname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPassword() {
@@ -82,19 +77,58 @@ public class User {
 		this.password = password;
 	}
 
-	public int getActive() {
-		return active;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setActive(int active) {
-		this.active = active;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
+	public int getUserRoleId() {
+		return userRoleId;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setUserRoleId(int userRoleId) {
+		this.userRoleId = userRoleId;
 	}
+
+	public String getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	public String getUserCreationDate() {
+		return userCreationDate;
+	}
+
+	public void setUserCreationDate(String userCreationDate) {
+		this.userCreationDate = userCreationDate;
+	}
+
+	public int getUserStatus() {
+		return userStatus;
+	}
+
+	public void setUserStatus(int userStatus) {
+		this.userStatus = userStatus;
+	}
+
+	// Using ManyToOne mapping for the user as each user may have many roles.
+/*
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
+*/
 }

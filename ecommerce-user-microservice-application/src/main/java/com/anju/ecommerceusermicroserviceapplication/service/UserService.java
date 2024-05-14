@@ -1,5 +1,7 @@
 package com.anju.ecommerceusermicroserviceapplication.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.anju.ecommerceusermicroserviceapplication.model.User;
@@ -7,7 +9,15 @@ import com.anju.ecommerceusermicroserviceapplication.model.User;
 
 @Service
 public interface UserService {
-	public User findUserByEmail(String email);
+	
+	User getUserById(Long id);
 
-	public void saveUser(User user);
+    List<User> getAllUsers();
+
+    User createUser(User user);
+
+    User updateUser(Long id, User user);
+
+	
+	
 }

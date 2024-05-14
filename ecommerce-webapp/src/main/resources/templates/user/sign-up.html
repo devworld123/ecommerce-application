@@ -33,7 +33,7 @@
                  <div class="form-group">
                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                          <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                         <input type="text" th:field="*{firstname}" class="form-control" id="firstname"
+                         <input type="text" th:field="*{firstName}" class="form-control" id="firstName"
                                 placeholder="First Name" required autofocus>
                      </div>
                  </div>
@@ -47,7 +47,7 @@
                  <div class="form-group">
                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                          <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                         <input type="text" th:field="*{lastname}" class="form-control" id="lastname"
+                         <input type="text" th:field="*{lastName}" class="form-control" id="lastName"
                                 placeholder="Last name" required autofocus>
                      </div>
                  </div>
@@ -61,14 +61,14 @@
                  <div class="form-group">
                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                          <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                         <input type="text" th:field="*{email}" class="form-control" id="email"
+                         <input type="text" th:field="*{emailId}" class="form-control" id="emailId"
                                 placeholder="username@jackrutorial.com" required autofocus>
                      </div>
                  </div>
              </div>
              <div class="col-md-3">
                  <div class="form-control-feedback">
-                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                         <span class="text-danger align-middle" th:if="${#fields.hasErrors('emailId')}" th:errors="*{emailId}">
                          </span>
                  </div>
              </div>

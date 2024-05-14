@@ -16,7 +16,7 @@ public class ProductController {
 	private RestTemplate restTemplate;
 	
 	
-	@GetMapping("/")
+	@GetMapping("/product/listing")
 	public String productListing(Model model) {
 
 		String productUrl = "http://localhost:8081/product/listing"; // URL of the ProductController endpoint

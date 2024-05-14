@@ -1,25 +1,37 @@
 package com.anju.ecommerceweabpp.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.client.RestTemplate;
 
 import com.anju.ecommerceweabpp.model.User;
 
 @Controller
 public class UserController {
 	
-		
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	
+	/*
 	@RequestMapping(value = { "/user/signup" }, method = RequestMethod.GET)
-	public ModelAndView signup() {
-		ModelAndView model = new ModelAndView();
-		User user = new User();
-		model.addObject("user", user);
-		model.setViewName("user/sign-up");
+	public String signUp(Model model) {
 
-		return model;
+		String userUrl = "http://localhost:8082/user/signup"; // URL of the user endpoint
+        User[] user = restTemplate.getForObject(userUrl, User[].class);
+        model.addAttribute("user", user);
+        return "user/sign-up"; // Thymeleaf template name without ".html" extension
 	}
-
+	*/
+	@GetMapping("/user/signup")
+	public String signUp(Model model) {
+	    
+	    User user = new User();
+	    model.addAttribute("user", user);
+	    return "user/sign-up"; // Thymeleaf template name without ".html" extension
+	}
+    
 }
