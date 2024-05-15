@@ -122,12 +122,18 @@ a {
         }
 /* Product Details Styles */
 .product-details-container {
+    display: flex;
+    justify-content: space-between;
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #fff;
+}
+.product-info {
+    flex: 0 0 70%; /* 70% width for product info */
+    padding-right: 20px;
 }
 
 .product-title {
@@ -146,3 +152,98 @@ a {
     color: #008080;
     font-weight: bold;
 }
+/* Product List Styles */
+.product-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.product-item {
+    width: 500px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.product-image img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    
+}
+
+.product-details {
+    padding: 10px;
+}
+
+.product-name {
+    font-size: 18px;
+    color: #333;
+    text-decoration:none;
+    cursor: pointer;
+}
+.product-name:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+.product-description {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #008080;
+    font-weight: bold;
+}
+
+/* Your specific styles for product details */
+        .product-details-container {
+            max-width: 75%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+.product-image {
+    flex: 0 0 30%; /* 30% width for product image */
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+        .product-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: #008080;
+            font-weight: bold;
+        }
+
+        
+
+        .add-to-cart-btn {
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .quantity-dropdown {
+            margin-top: 10px;
+        }

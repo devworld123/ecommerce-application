@@ -10,12 +10,63 @@
     </style>
 </head>
 <body>
-    <div class="product-details-container">
-       
-        <h1 class="product-title" th:text="${product.productName}"></h1>
-        <p class="product-description" th:text="${product.productDetails}"></p>
-        <p class="product-description" th:text="${product.productFeatures}"></p>
-        <p class="product-price" th:text="'Price: $' + ${product.productUnitPrice}"></p>
+	<!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <a href="#" th:href="@{/}">Your Logo</a>
+        </div>
+        <div class="category">
+            <a href="#" th:href="@{/}">Categories</a>
+        </div>
+       <div class="search-bar">
+            <input type="text" placeholder="Search products...">
+            <button type="submit">Search</button>
+        </div>
+        <div class="menu">
+            <ul>
+            
+                
+                <li><a href="#" th:href="@{/cart}">My Cart</a></li>
+                <li><a href="#" th:href="@{/profile}">User Profile</a></li>
+                <li><a href="#" th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
     </div>
+    
+	
+    <div class="product-details-container">
+		<div class="product-image">
+            <img th:src="@{/images/product-placeholder.jpg}" alt="Product Image">
+        </div>
+        <div class="product-info">
+            <h1 class="product-title" th:text="${product.productName}"></h1>
+            <p>
+                <h4>About this item</h4>
+            </p>
+            <p class="product-description" th:text="${product.productDetails}"></p>
+            <p>
+                <h4>Features</h4>
+            </p>
+            <p class="product-description" th:text="${product.productFeatures}"></p>
+            <p class="product-price" th:text="'Price: $' + ${product.productUnitPrice}"></p>
+            
+            <div class="quantity-dropdown">
+				<p>
+                <label for="quantity">Quantity:</label>
+                <select id="quantity" name="quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                </p>
+            </div>
+            <button class="add-to-cart-btn">Add to Cart</button>
+            
+        </div>
+        
+    </div>
+    
 </body>
 </html>
