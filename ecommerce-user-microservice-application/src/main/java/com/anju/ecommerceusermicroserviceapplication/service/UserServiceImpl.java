@@ -42,17 +42,16 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
-
 	@Override
-	public boolean loginUser(User loginUser) {
+	public User loginUser(User loginUser) {
 	    if (loginUser == null || loginUser.getEmailId() == null || loginUser.getPassword() == null) {
-	        return false; // Invalid login request
+	        return null; // Invalid login request
 	    }
 
 	    // Check if the email and password match a user in the database
-	    User user = userRepository.findByEmailIdAndPassword(loginUser.getEmailId(), loginUser.getPassword());
-	    return user != null;
+	    return userRepository.findByEmailIdAndPassword(loginUser.getEmailId(), loginUser.getPassword());
 	}
+
 
 	@Override
 	public User findByEmail(User user) {

@@ -18,7 +18,7 @@ public interface UserService {
 
     User updateUser(Long id, User user);
 
-    boolean loginUser(User user);
+    User loginUser(User user);
     
     User findByEmail(User user);
 	

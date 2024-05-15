@@ -1,5 +1,7 @@
 package com.anju.ecommerceusermicroserviceapplication.controller;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,24 +66,34 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody Map<String, String> loginRequest) {
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody Map<String, String> loginRequest) {
         String email = loginRequest.get("emailId");
         String password = loginRequest.get("password");
 
         if (email == null || password == null) {
-            return ResponseEntity.badRequest().body("Email and password are required.");
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "Email and password are required."));
         }
 
         User loginUser = new User();
         loginUser.setEmailId(email);
         loginUser.setPassword(password);
 
-        if (!userService.loginUser(loginUser)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found or incorrect credentials.");
+        User loggedInUser = userService.loginUser(loginUser);
+        if (loggedInUser == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                                 .body(Collections.singletonMap("error", "User not found or incorrect credentials."));
         }
 
-        return ResponseEntity.ok("Login successful.");
+        // Construct user details to return
+        Map<String, Object> userDetails = new HashMap<>();
+        userDetails.put("userId", loggedInUser.getUserId());
+        userDetails.put("name", loggedInUser.getFirstName() + " " + loggedInUser.getLastName());
+        userDetails.put("email", loggedInUser.getEmailId());
+        userDetails.put("roleId", loggedInUser.getUserRoleId());
+
+        return ResponseEntity.ok(userDetails);
     }
+
     
     
     

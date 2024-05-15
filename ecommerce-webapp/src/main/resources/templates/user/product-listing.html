@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Product List</title>
+	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<link rel="stylesheet" href="/css/styles.css" th:href="@{/css/style.css}">
+
+	<!-- Header -->
+	<div class="header">
+		<div class="logo">
+
+			<a href="#" th:href="@{/user/product-listing}"><img src="/images/logo.png" alt="Your Logo"></a>
+		</div>
+		<div th:if="${session.userName != null}" class="welcome-message">
+			Welcome
+			<span th:text="${session.userName}">Username</span>
+		</div>
+		<div class="search-bar">
+			<input type="text" placeholder="Search products...">
+			<button type="submit">Search</button>
+		</div>
+		<div class="menu">
+			<ul>
+
+
+				<li><a href="#" th:href="@{/cart}">My Cart</a></li>
+				<li><a href="#" th:href="@{/profile}">User Profile</a></li>
+				<li th:if="${session.userName != null}">
+					<a href="#" th:href="@{/logout}">Logout</a>
+				</li>
+				<li th:unless="${session.userName != null}">
+					<a href="#" th:href="@{/login}">Login</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+
+
+	<h1>Product List:</h1>
+	<div class="product-list-container">
+		<div class="product-item" th:each="product : ${products}">
+			<div class="product-image">
+				<img src="/images/product-placeholder.jpg" alt="Product Image">
+			</div>
+			<div class="product-details">
+				<a th:href="@{'/user/product/details/' + ${product.productId}}" th:text="${product.productName}"
+					class="product-name"></a>
+				<p th:text="${product.productDetails}" class="product-description"></p>
+				<p th:text="'Price: $' + ${product.productUnitPrice}" class="product-price"></p>
+			</div>
+		</div>
+	</div>
+
+	<!-- F -->
+	<div class="footer">
+		&copy; 2024 ecom . All rights reserved.
+	</div>
+</body>
+
+</html>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Product List</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <style>
        
     </style>
@@ -13,11 +14,10 @@
      <!-- Header -->
     <div class="header">
         <div class="logo">
-            <a href="#" th:href="@{/}">Your Logo</a>
+            
+             <a href="#" th:href="@{/product/listing}"><img src="/images/logo.png" alt="Your Logo"></a>
         </div>
-        <div class="category">
-            <a href="#" th:href="@{/}">Categories</a>
-        </div>
+        
        <div class="search-bar">
             <input type="text" placeholder="Search products...">
             <button type="submit">Search</button>
@@ -50,8 +50,9 @@
         </div>
     </div>
 
+<!-- F -->
     <div class="footer">
-        &copy; 2024  Anju . All rights reserved.
+        &copy; 2024  ecom . All rights reserved.
     </div>
 </body>
 </html>

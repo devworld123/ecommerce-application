@@ -36,7 +36,7 @@ body {
 }
 
 .search-bar button {
-    background-color: #febd69;
+    background-color: #00d4c6;
     color: #232f3e;
     border: none;
     padding: 8px 16px;
@@ -236,7 +236,7 @@ a {
         
 
         .add-to-cart-btn {
-            background-color: #ff9900;
+            background-color: #00d4c6;
             color: #fff;
             border: none;
             padding: 10px 20px;

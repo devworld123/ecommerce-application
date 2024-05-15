@@ -1,5 +1,6 @@
 package com.anju.ecommerceproductmicroserviceapplication.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,13 +12,20 @@ import jakarta.persistence.Table;
 public class SubCategory {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "sub_category_id")
 	private long subCategoryId;
+	@Column(name = "category_id")
 	private long categoryId;
+	@Column(name = "sub_category_name")
 	private String subCategoryName;
+	@Column(name = "sub_category_details")
 	private String subCategoryDetails;
+	@Column(name = "sub_category_status")
 	private int subCategoryStatus;
+	@Column(name = "user_id")
 	private long userId;
+	@Column(name = "sub_category_creation_status")
 	private String subCategoryCreationStatus;
 
 	public long getSubCategoryId() {

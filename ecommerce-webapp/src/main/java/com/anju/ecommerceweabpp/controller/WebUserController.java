@@ -38,28 +38,28 @@ public class WebUserController {
 		  User user = new User();
 		
 		model.addObject("user", user);
-		model.setViewName("user/login");
+		model.setViewName("login");
 		return model;
 	}
 	
-	@GetMapping("/user/signup")
+	@GetMapping("/signup")
 	public String signUp(Model model) {
 	    
 	    User user = new User();
 	    model.addAttribute("user", user);
-	    return "user/sign-up-user"; 
+	    return "sign-up-user"; 
 	}
-	@GetMapping("/user/signupvendor")
+	@GetMapping("/signupvendor")
 	public String signUpVendor(Model model) {
 	    
 	    User user = new User();
 	    model.addAttribute("user", user);
-	    return "user/sign-up-vendor"; 
+	    return "sign-up-vendor"; 
 	}
 	
 	
 	
-	@PostMapping("/user/signup")
+	@PostMapping("/signup")
     public String signUpSubmit(@ModelAttribute User user) {
 		// Set today's date as the user creation date
 	    LocalDate today = LocalDate.now();
@@ -72,13 +72,13 @@ public class WebUserController {
         String userUrl = "http://localhost:8082/api/user/createUser"; // URL of the UserController API endpoint for user creation
         ResponseEntity<User> response = restTemplate.postForEntity(userUrl, user, User.class);
         if (response.getStatusCode() == HttpStatus.CREATED) {
-            return "redirect:/login"; // Redirect to login page after successful user creation
+            return "redirect:login"; // Redirect to login page after successful user creation
         } else {
             // Handle error or display a message
             return "error"; // Thymeleaf template for error handling
         }
     }
-	
+	/*
 	@PostMapping("/login")
 	public String loginUser(@ModelAttribute User loginUser, Model model, HttpSession session) {
 	    String email = loginUser.getEmailId();
@@ -86,7 +86,7 @@ public class WebUserController {
 	    
 	    if (email == null || password == null) {
 	        model.addAttribute("error", "Email and password are required.");
-	        return "user/login"; // Redirect back to login page with error message
+	        return "login"; // Redirect back to login page with error message
 	    }
 	    
 	    // Create a Map for the login request data
@@ -102,16 +102,71 @@ public class WebUserController {
 	        
 	        if (response.getStatusCode() == HttpStatus.OK) {
 	            // Successful login, redirect to dashboard
-	            session.setAttribute("userId", email); // Set userId in session (example, you can set actual user ID here)
-	            return "redirect:/product/listing"; // Redirect to dashboard upon successful login
+	            session.setAttribute("userEmail", email); // Set userId in session (example, you can set actual user ID here)
+	            return "redirect:/user/product-listing"; // Redirect to dashboard upon successful login
 	        } else {
 	            model.addAttribute("error", "Invalid email or password.");
-	            return "/login"; // Redirect back to login page with error message
+	            return "login"; // Redirect back to login page with error message
 	        }
 	    } catch (HttpClientErrorException ex) {
 	        model.addAttribute("error", "Error logging in. Please try again later.");
-	        return "user/login"; // Redirect back to login page with error message
+	        return "login"; // Redirect back to login page with error message
 	    }
+	}
+	*/
+	@PostMapping("/login")
+	public String loginUser(@ModelAttribute User loginUser, Model model, HttpSession session) {
+	    String email = loginUser.getEmailId();
+	    String password = loginUser.getPassword();
+	    
+	    if (email == null || password == null) {
+	        model.addAttribute("error", "Email and password are required.");
+	        return "login"; // Redirect back to login page with error message
+	    }
+	    
+	    // Create a Map for the login request data
+	    Map<String, String> loginRequest = new HashMap<>();
+	    loginRequest.put("emailId", email);
+	    loginRequest.put("password", password);
+	    
+	    String userUrl = "http://localhost:8082/api/user/login"; // URL of the UserController API endpoint for user login
+	    
+	    try {
+	        // Send the login request using RestTemplate
+	        ResponseEntity<Map> response = restTemplate.postForEntity(userUrl, loginRequest, Map.class);
+	        
+	        if (response.getStatusCode() == HttpStatus.OK) {
+	            Map<String, Object> userDetails = response.getBody();
+	            // Set session attributes for user details	           
+	            session.setAttribute("userId", userDetails.get("userId"));
+	            session.setAttribute("userName", userDetails.get("name"));
+	            session.setAttribute("userEmail", userDetails.get("email"));
+	            session.setAttribute("userRoleId", userDetails.get("roleId"));
+	            
+	            if(userDetails.get("roleId").equals(3)) {
+	            	return "redirect:/user/product-listing"; // Redirect to dashboard upon successful login
+	            }
+	            else  {
+	            	return "redirect:/vendor/product-listing"; // Redirect to dashboard upon successful login
+	            }
+	            
+	        } else {
+	            model.addAttribute("error", "Invalid email or password.");
+	            return "login"; // Redirect back to login page with error message
+	        }
+	    } catch (HttpClientErrorException ex) {
+	        model.addAttribute("error", "Error logging in. Please try again later.");
+	        return "login"; // Redirect back to login page with error message
+	    }
+	}
+
+	@GetMapping("/logout")
+	public String logoutUser(HttpSession session) {
+	    // Invalidate the session and remove session attributes
+	    session.invalidate();
+	    
+	    // Redirect to the login page
+	    return "redirect:/login";
 	}
     
 }

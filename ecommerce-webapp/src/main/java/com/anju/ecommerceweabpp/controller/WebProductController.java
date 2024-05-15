@@ -16,20 +16,20 @@ public class WebProductController {
 	private RestTemplate restTemplate;
 	
 	
-	@GetMapping("/product/listing")
+	@GetMapping("/user/product-listing")
 	public String productListing(Model model) {
 
 		String productUrl = "http://localhost:8081/api/product/listing"; // URL of the ProductController endpoint
         Product[] products = restTemplate.getForObject(productUrl, Product[].class);
         model.addAttribute("products", products);
-        return "product/product-listing"; // Thymeleaf template name without ".html" extension
+        return "user/product-listing"; // Thymeleaf template name without ".html" extension
 	}
-	@GetMapping("/product/details/{id}")
+	@GetMapping("/user/product/details/{id}")
     public String getProductDetails(Model model, @PathVariable Long id) {
         String productDetailsUrl = "http://localhost:8081/api/product/details/" + id;
         Product product = restTemplate.getForObject(productDetailsUrl, Product.class);
         model.addAttribute("product", product);
-        return "product/product-details"; // Thymeleaf template for product details page
+        return "user/product-details"; // Thymeleaf template for product details page
     }
 
 }
