@@ -8,5 +8,7 @@ import com.anju.ecommerceusermicroserviceapplication.model.User;
 @Repository("userRepository")
 public interface UserRepository extends  JpaRepository<User,Long>{
 
-	//User findByEmail(String emailId);
+	User findByEmailId(String emailId);
+	
+	 User findByEmailIdAndPassword(String emailId, String password);
 }

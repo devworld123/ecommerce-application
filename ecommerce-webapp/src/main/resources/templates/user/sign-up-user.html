@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
- xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
  <title>Sign up</title>
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -25,6 +24,7 @@
                  <hr>
              </div>
          </div>
+         <input type="hidden" name="userRoleId" value="3" />
          <div class="row">
              <div class="col-md-3 field-label-responsive">
                  <label for="name">First Name</label>
@@ -75,6 +75,34 @@
          </div>
          <div class="row">
              <div class="col-md-3 field-label-responsive">
+                 <label for="address">Address</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-address-book"></i></div>
+                         <input type="text" th:field="*{userAddress}" class="form-control" id="userAddress"
+                                placeholder="User Address" required autofocus>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="contact">Contact Number</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-phone"></i></div>
+                         <input type="text" th:field="*{contactNumber}" class="form-control" id="contactNumber"
+                                placeholder="Contact Number" required autofocus>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
                  <label for="password">Password</label>
              </div>
              <div class="col-md-6">
@@ -97,7 +125,9 @@
              <div class="col-md-3"></div>
              <div class="col-md-6">
                  <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
+                 <div class="margin-top20 text-center"> Already have an account? <a th:href="@{/login}">Back to Login</a>
              </div>
+             
          </div>
      </form>
  </div>

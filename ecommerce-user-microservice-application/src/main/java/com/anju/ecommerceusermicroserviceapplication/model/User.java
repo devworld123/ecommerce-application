@@ -13,10 +13,11 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "user_id")
-	private long userId;
-
 	
+	//@Id
+   // @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_id_seq")
+    @Column(name = "user_id")
+    private Long userId;
 
 	@Column(name = "user_first_name")
 	private String firstName;
@@ -24,8 +25,6 @@ public class User {
 	@Column(name = "user_last_name")
 	private String lastName;
 
-	@Column(name = "user_password")
-	private String password;
 	
 	@Column(name = "user_email_id")
 	private String emailId;
@@ -36,7 +35,10 @@ public class User {
 	@Column(name = "user_address")
 	private String userAddress;
 	
-	@Column(name = "user_contact_no")
+	@Column(name = "user_password")
+	private String password;
+	
+	@Column(name = "user_contact_number")
 	private String contactNumber;
 	
 	@Column(name = "user_creation_date")
@@ -45,11 +47,11 @@ public class User {
 	@Column(name = "user_status")
 	private int userStatus;
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

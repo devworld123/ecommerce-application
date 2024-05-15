@@ -9,8 +9,6 @@ import com.anju.ecommerceusermicroserviceapplication.model.User;
 import com.anju.ecommerceusermicroserviceapplication.repository.RoleRepository;
 import com.anju.ecommerceusermicroserviceapplication.repository.UserRepository;
 
-
-
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -21,28 +19,44 @@ public class UserServiceImpl implements UserService {
 	private RoleRepository roleRepository;
 
 	@Override
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
+	public User getUserById(Long id) {
+		return userRepository.findById(id).orElse(null);
+	}
 
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+	@Override
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
 
-    @Override
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
+	@Override
+	public User createUser(User user) {
+		return userRepository.save(user);
+	}
 
-    @Override
-    public User updateUser(Long id, User user) {
-        if (userRepository.existsById(id)) {
-            user.setUserId(id);
-            return userRepository.save(user);
-        } else {
-            return null;
-        }
-    }
+	@Override
+	public User updateUser(Long id, User user) {
+		if (userRepository.existsById(id)) {
+			user.setUserId(id);
+			return userRepository.save(user);
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public boolean loginUser(User loginUser) {
+	    if (loginUser == null || loginUser.getEmailId() == null || loginUser.getPassword() == null) {
+	        return false; // Invalid login request
+	    }
+
+	    // Check if the email and password match a user in the database
+	    User user = userRepository.findByEmailIdAndPassword(loginUser.getEmailId(), loginUser.getPassword());
+	    return user != null;
+	}
+
+	@Override
+	public User findByEmail(User user) {
+		return userRepository.findByEmailId(user.getEmailId());
+	}
 
 }

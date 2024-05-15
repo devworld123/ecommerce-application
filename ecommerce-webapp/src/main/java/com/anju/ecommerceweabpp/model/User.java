@@ -2,7 +2,7 @@ package com.anju.ecommerceweabpp.model;
 
 public class User {
 	
-	private long userId;
+	private Long userId;
 	private String firstName;
 	private String lastName;	
 	private String password;	
@@ -12,10 +12,10 @@ public class User {
 	private String contactNumber;	
 	private String userCreationDate;	
 	private int userStatus;
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public String getFirstName() {

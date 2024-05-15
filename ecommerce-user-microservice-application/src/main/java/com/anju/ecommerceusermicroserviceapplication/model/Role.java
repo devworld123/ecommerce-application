@@ -15,6 +15,9 @@ public class Role {
 
 	@Column(name = "role")
 	private String role;
+	
+	@Column(name = "role_details")
+	private String roleDetails;
 
 	public int getId() {
 		return id;

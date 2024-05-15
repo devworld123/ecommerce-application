@@ -1,36 +1,65 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Sign in</title>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
-		id="bootstrap-css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+ <title>Sign in</title>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
 </head>
-
 <body>
-	<div class="container">
-		<div class="alert alert-danger" role="alert" th:if="${param.error}">
-			The email or password is incorrect!
-		</div>
-		<form th:action="@{/login}" method="post">
-			<h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
-			<label for="inputEmail" class="sr-only">Email</label>
-			<input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
-			<label for="inputPassword" class="sr-only">Password</label>
-			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-			<div class="checkbox mb-3">
-				<label>
-					<input type="checkbox" name="remember-me" /> Remember me
-				</label>
-			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-			<div class="margin-top20 text-center"> Don't have an account? <a th:href="@{/signup}">Create an account</a>
-			</div>
-		</form>
-	</div>
+ <div class="container">
+     <form class="form-horizontal" role="form" method="POST" th:action="@{/login}" th:object="${user}">
+         <!-- Display error message if login attempt failed -->
+         <div class="alert alert-danger" role="alert" th:if="${error}">
+             <strong>Error:</strong> <span th:text="${error}"></span>
+         </div>
+         
+         <div class="row">
+             <div class="col-md-3"></div>
+             <div class="col-md-6">
+                 <h2>Sign in</h2>
+                 <hr>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="email">Email</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                         <input type="text" th:field="*{emailId}" class="form-control" id="emailId"
+                                placeholder="username@jackrutorial.com" required autofocus>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         
+         <div class="row">
+             <div class="col-md-3 field-label-responsive">
+                 <label for="password">Password</label>
+             </div>
+             <div class="col-md-6">
+                 <div class="form-group has-danger">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                         <input type="password" th:field="*{password}" class="form-control" id="password"
+                                placeholder="Password" required>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3"></div>
+             <div class="col-md-6">
+                 <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Sign in</button>
+                 <div class="margin-top20 text-center"> Don't have an account? <a th:href="@{/user/signup}">Create an account</a>
+                 <div class="margin-top20 text-center"> Are you a vendor? <a th:href="@{/user/signupvendor}">Create an account</a>
+             </div>
+         </div>
+     </form>
+ </div>
 </body>
-
 </html>
